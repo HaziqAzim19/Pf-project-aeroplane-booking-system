@@ -25,14 +25,14 @@ void returntomain(){
     scanf("%d", &ch); //ch declared in global variable
     if(ch==1){
         system("cls");
-        printf("\nyou have returned to main menu\n");
+        printf("\nyou have returned to main menu\n\n");
     }
     else if(ch==2){
         printf("exiting program\n");
         loop++;
     }
     else {
-        printf("invalid input");
+        printf("\ninvalid input\nReturning to main menu\n\n");
     }
 }
 
@@ -128,8 +128,7 @@ void availability(){
         printf("There are a total of %d available seats in Economy class\n", count);
     }
     else {
-    	printf("\ninvalid input\nExiting program....\n");
-    	loop++;
+    	printf("\ninvalid input\nReturning to main menu....\n");
 	}
 }
 
@@ -178,7 +177,6 @@ void reserveSeat() {
 					printf("\nyour seat has been reserved\nYou can view it in the visual representation right now\n");
 					printf("*************************\n");
 				}
-			}
 			else if(WinOrAis==2){ //aisle seat
 			if(FirstClass1[seatNumber] == 1){
     				printf("This seat is already reserved by: %s \n\n", name);
@@ -186,6 +184,8 @@ void reserveSeat() {
 				else if(FirstClass1[seatNumber] ==0){
 					FirstClass1[seatNumber] = 1;
 				}
+			}
+			
 			}
 		}
 		else if(side==2){ //right side
@@ -201,7 +201,6 @@ void reserveSeat() {
 					printf("*************************\n");
 				}
 			}
-			}
 			else if(WinOrAis==2){ //aisle seat
 				if(FirstClass2[seatNumber] == 1){
     				printf("This seat is already reserved by: %s \n\n", name);
@@ -209,6 +208,8 @@ void reserveSeat() {
 				else if(FirstClass2[seatNumber] ==0){
 					FirstClass2[seatNumber] = 1;
 				}
+			}
+			
 			}
 		}
 
@@ -241,22 +242,23 @@ void reserveSeat() {
     				printf("This seat is already reserved by %s ", name);
 				}
 				else if(BusinessClassWindow2[seatNumber] ==0){
-					FirstClassWindow2[seatNumber] = 1;
+					BusinessClassWindow2[seatNumber] = 1;
 					system("cls");
 					printf("\n*************************");
 					printf("\nyour seat has been reserved\nYou can view it in the visual representation right now\n");
 					printf("*************************\n");
 				}
 			}
-			}
 			else if(WinOrAis==2){ //aisle seat
 				if(BusinessClass2[seatNumber] == 1){
     				printf("This seat is already reserved by: %s \n\n", name);
 				}
 				else if(BusinessClass2[seatNumber] ==0){
-					FirstClass2[seatNumber] = 1;
+					BusinessClass2[seatNumber] = 1;
 				}
 			}
+			}
+			
 		}
 
     else if(classOption==3){ //economic class
@@ -265,7 +267,7 @@ void reserveSeat() {
     			if(EconomicClassWindow1[seatNumber] == 1){
     				printf("This seat is already reserved by %s ", name);
 				}
-				else if(EconomicClassWindow1[seatNumber] ==0){
+				else if(EconomicClassWindow1[seatNumber] == 0){
 					EconomicClassWindow1[seatNumber] = 1;
 					system("cls");
 					printf("\n*************************");
@@ -277,7 +279,7 @@ void reserveSeat() {
 			if(EconomicClass1[seatNumber] == 1){
     				printf("This seat is already reserved by: %s \n\n", name);
 				}
-				else if(EconomicClass1[seatNumber] ==0){
+				else if(EconomicClass1[seatNumber] == 0){
 					EconomicClass1[seatNumber] = 1;
 				}
 			}
@@ -295,7 +297,6 @@ void reserveSeat() {
 					printf("*************************\n");
 				}
 			}
-			}
 			else if(WinOrAis==2){ //aisle seat
 				if(EconomicClass2[seatNumber] == 1){
     				printf("This seat is already reserved by: %s \n\n", name);
@@ -303,6 +304,7 @@ void reserveSeat() {
 				else if(EconomicClass2[seatNumber] ==0){
 					EconomicClass2[seatNumber] = 1;
 				}
+			}
 			}
 		}
 
