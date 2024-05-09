@@ -1,0 +1,456 @@
+/*
+Coders names: Haziq Azim,	Shariq inam,	Momin ahmad
+Roll.no:	  23P-0532		23P-0515		23P-0518
+		AEROPLANE BOOKING SYSTEM
+*/
+
+#include<stdio.h>
+#include<stdlib.h> //used for system("cls"); <used for clearing the screen>
+
+int a=0, loop=0, ch, option2;
+char name[20];
+// structure structure 0 means free seat, 1 means reserved
+int FirstClassWindow1[5]={0,0,0,0,0}, FirstClass1[5]={0,0,0,0,0}, FirstClass2[5]={0,0,0,0,0}, FirstClassWindow2[5]={0,0,0,0,0};
+int BusinessClassWindow1[5]={0,0,0,0,0}, BusinessClass1[5]={0,0,0,0,0}, BusinessClass2[5]={0,0,0,0,0}, BusinessClassWindow2[5]={0,0,0,0,0};
+int EconomicClassWindow1[5]={0,0,0,0,0}, EconomicClass1[5]={0,0,0,0,0}, EconomicClass2[5]={0,0,0,0,0}, EconomicClassWindow2[5]={0,0,0,0,0};
+
+void prices() {
+    printf("prices of seats\n");
+    printf("the prices are as the following\n1. First class: 999 USD\n2. Business class: 650 USD\n3. Economy class: 250 USD\n");
+    printf("For a window seat in any class there will be a surcharge of 15 percent\n");
+}
+
+void returntomain(){
+    printf("\nPress 1 to return to main menu\n2 to exit the program\n");
+    scanf("%d", &ch); //ch declared in global variable
+    if(ch==1){
+        system("cls");
+        printf("\nyou have returned to main menu\n");
+    }
+    else if(ch==2){
+        printf("exiting program\n");
+        loop++;
+    }
+    else {
+        printf("invalid input");
+    }
+}
+
+void visual(){
+	
+	printf("    /                              \\ \n   /                                \\ \n  /                                  \\ \n");
+	printf(" /                                    \\ \n/______________________________________\\ \n");
+	
+	printf(" ______________________________________\n");
+	printf("|                                      |\n");
+	printf("|  \t  |   FIRST CLASS     |        |\n");
+	printf("|  \t  V                   V        |\n");
+	printf("|______________________________________|\n\n");
+	int b=0;
+	for(a=0;a<5;a++){
+		printf("|%d    %d\t\t\t\t%d     %d|\n", FirstClassWindow1[b], FirstClass1[b], FirstClass2[b], FirstClassWindow2[b]);
+		b++;
+	}
+	printf(" ______________________________________\n");
+	printf("|                                      |\n");
+	printf("|  \t  |   BUSINESS CLASS  |        |\n");
+	printf("|  \t  V                   V        |\n");
+	printf("|______________________________________|\n\n");
+	b=0;
+	for(a=0;a<5;a++){
+		printf("|%d    %d\t\t\t\t%d     %d|\n", BusinessClassWindow1[b], BusinessClass1[b], BusinessClass2[b], BusinessClassWindow2[b]);
+		b++;
+	}
+	printf(" ______________________________________\n");
+	printf("|                                      |\n");
+	printf("|  \t  |   ECONOMY CLASS   |        |\n");
+	printf("|  \t  v                   V        |\n");
+	printf("|______________________________________|\n\n");
+	b=0;
+	for(a=0;a<5;a++){
+		printf("|%d    %d\t\t\t\t%d     %d|\n", EconomicClassWindow1[b], EconomicClass1[b], EconomicClass2[b], EconomicClassWindow2[b]);
+		b++;
+	}
+}
+
+
+void availability(){
+    int count=0;
+    if(option2==5){
+        for(a=0;a<5;a++){
+            if(FirstClassWindow1[a]==0){
+                count++;
+            }
+            if(FirstClass1[a]==0){
+                count++;
+            }
+            if(FirstClass2[a]==0){
+                count++;
+            }
+            if(FirstClassWindow2[a]==0){
+                count++;
+            }
+        }
+        printf("There are a total of %d available seats in first class\n", count);
+    }
+    else if(option2==6){
+        for(a=0;a<5;a++){
+            if(BusinessClassWindow1[a]==0){
+                count++;
+            }
+            if(BusinessClass1[a]==0){
+                count++;
+            }
+            if(BusinessClass2[a]==0){
+                count++;
+            }
+            if(BusinessClassWindow2[a]==0){
+                count++;
+            }
+        }
+        printf("There are a total of %d available seats in Business class\n", count);
+    }
+    else if(option2==7){
+        for(a=0;a<5;a++){
+            if(EconomicClassWindow1[a]==0){
+                count++;
+            }
+            if(EconomicClass1[a]==0){
+                count++;
+            }
+            if(EconomicClass2[a]==0){
+                count++;
+            }
+            if(EconomicClassWindow2[a]==0){
+                count++;
+            }
+        }
+        printf("There are a total of %d available seats in Economy class\n", count);
+    }
+    else {
+    	printf("\ninvalid input\nExiting program....\n");
+    	loop++;
+	}
+}
+
+void reserveSeat() {
+    int seatNumber, classOption, WinOrAis, side;
+   
+    printf("Enter the class you want to reserve a seat in\n1 for First Class\n2 for Business Class\n3 for Economy Class: \n");
+    scanf("%d", &classOption);
+    if(classOption<1 || classOption>4){
+    	printf("Invalid input\n");
+    	return;
+	}
+   
+    printf("\nChoose your side of the plane\n1 for left\n2 for right\n");
+    scanf("%d", &side);
+    if(side<1 || side>2){
+    	printf("Invalid input\n");
+    	return;
+	}
+   
+    printf("\nWould you like a window seat or aisle seat ?\nPress 1 for window\nPress 2 for aisle\n");
+    scanf("%d", &WinOrAis);
+    if(WinOrAis<1 || WinOrAis>2){
+    	printf("Invalid input\n");
+    	return;
+	}
+    
+	printf("\nEnter the seat number which you want to reserve in the coloumn\n_\n0\n1\n2\n3\n4\n_\n");
+    scanf("%d", &seatNumber);
+    if(seatNumber<0 || seatNumber>4){
+    	printf("Invalid input\n");
+    	return;
+	}
+
+    // Reserve the seat in the selected class and seat
+    if(classOption==1){ //first class
+    	if(side==1){ //left side
+    		if(WinOrAis==1){ //window seat
+    			if(FirstClassWindow1[seatNumber] == 1){
+    				printf("This seat is already reserved by %s ", name);
+				}
+				else if(FirstClassWindow1[seatNumber] ==0){
+					FirstClassWindow1[seatNumber] = 1;
+					system("cls");
+					printf("\n*************************");
+					printf("\nyour seat has been reserved\nYou can view it in the visual representation right now\n");
+					printf("*************************\n");
+				}
+			}
+			else if(WinOrAis==2){ //aisle seat
+			if(FirstClass1[seatNumber] == 1){
+    				printf("This seat is already reserved by: %s \n\n", name);
+				}
+				else if(FirstClass1[seatNumber] ==0){
+					FirstClass1[seatNumber] = 1;
+				}
+			}
+		}
+		else if(side==2){ //right side
+    		if(WinOrAis==1){ //window seat
+    			if(FirstClassWindow2[seatNumber] == 1){
+    				printf("This seat is already reserved by %s ", name);
+				}
+				else if(FirstClassWindow2[seatNumber] ==0){
+					FirstClassWindow2[seatNumber] = 1;
+					system("cls");
+					printf("\n*************************");
+					printf("\nyour seat has been reserved\nYou can view it in the visual representation right now\n");
+					printf("*************************\n");
+				}
+			}
+			}
+			else if(WinOrAis==2){ //aisle seat
+				if(FirstClass2[seatNumber] == 1){
+    				printf("This seat is already reserved by: %s \n\n", name);
+				}
+				else if(FirstClass2[seatNumber] ==0){
+					FirstClass2[seatNumber] = 1;
+				}
+			}
+		}
+
+	else if(classOption==2){ //business class
+    	if(side==1){ //left side
+    		if(WinOrAis==1){ //window seat
+    			if(BusinessClassWindow1[seatNumber] == 1){
+    				printf("This seat is already reserved by %s ", name);
+				}
+				else if(BusinessClassWindow1[seatNumber] == 0){
+					BusinessClassWindow1[seatNumber] = 1;
+					system("cls");
+					printf("\n*************************");
+					printf("\nyour seat has been reserved\nYou can view it in the visual representation right now\n");
+					printf("*************************\n");
+				}
+			}
+			else if(WinOrAis==2){ //aisle seat
+			if(BusinessClass1[seatNumber] == 1){
+    				printf("This seat is already reserved by: %s \n\n", name);
+				}
+				else if(BusinessClass1[seatNumber] == 0){
+					BusinessClass1[seatNumber] = 1;
+				}
+			}
+		}
+		else if(side==2){ //right side
+    		if(WinOrAis==1){ //window seat
+    			if(BusinessClassWindow2[seatNumber] == 1){
+    				printf("This seat is already reserved by %s ", name);
+				}
+				else if(BusinessClassWindow2[seatNumber] ==0){
+					FirstClassWindow2[seatNumber] = 1;
+					system("cls");
+					printf("\n*************************");
+					printf("\nyour seat has been reserved\nYou can view it in the visual representation right now\n");
+					printf("*************************\n");
+				}
+			}
+			}
+			else if(WinOrAis==2){ //aisle seat
+				if(BusinessClass2[seatNumber] == 1){
+    				printf("This seat is already reserved by: %s \n\n", name);
+				}
+				else if(BusinessClass2[seatNumber] ==0){
+					FirstClass2[seatNumber] = 1;
+				}
+			}
+		}
+
+    else if(classOption==3){ //economic class
+    	if(side==1){ //left side
+    		if(WinOrAis==1){ //window seat
+    			if(EconomicClassWindow1[seatNumber] == 1){
+    				printf("This seat is already reserved by %s ", name);
+				}
+				else if(EconomicClassWindow1[seatNumber] ==0){
+					EconomicClassWindow1[seatNumber] = 1;
+					system("cls");
+					printf("\n*************************");
+					printf("\nyour seat has been reserved\nYou can view it in the visual representation right now\n");
+					printf("*************************\n");
+				}
+			}
+			else if(WinOrAis==2){ //aisle seat
+			if(EconomicClass1[seatNumber] == 1){
+    				printf("This seat is already reserved by: %s \n\n", name);
+				}
+				else if(EconomicClass1[seatNumber] ==0){
+					EconomicClass1[seatNumber] = 1;
+				}
+			}
+		}
+		else if(side==2){ //right side
+    		if(WinOrAis==1){ //window seat
+    			if(EconomicClassWindow2[seatNumber] == 1){
+    				printf("This seat is already reserved by %s ", name);
+				}
+				else if(EconomicClassWindow2[seatNumber] ==0){
+					EconomicClassWindow2[seatNumber] = 1;
+					system("cls");
+					printf("\n*************************");
+					printf("\nyour seat has been reserved\nYou can view it in the visual representation right now\n");
+					printf("*************************\n");
+				}
+			}
+			}
+			else if(WinOrAis==2){ //aisle seat
+				if(EconomicClass2[seatNumber] == 1){
+    				printf("This seat is already reserved by: %s \n\n", name);
+				}
+				else if(EconomicClass2[seatNumber] ==0){
+					EconomicClass2[seatNumber] = 1;
+				}
+			}
+		}
+
+	
+}
+
+void cancelReservation() {
+    int seatNumber, classOption, WinOrAis, side;
+	printf("Enter the class you want to cancel your seat in\n1 for First Class\n2 for Business Class\n3 for Economy Class: \n");
+    scanf("%d", &classOption);
+    if(classOption<1 || classOption>4){
+    	printf("Invalid input\n");
+    	return;
+	}
+    
+	printf("\nChoose your side of the plane\n1 for left\n2 for right\n");
+    scanf("%d", &side);
+    if(side<1 || side>2){
+    	printf("Invalid input\n");
+    	return;
+	}
+    
+	printf("\nWas it the window seat or aisle seat ?\nPress 1 for window\nPress 2 for aisle\n");
+    scanf("%d", &WinOrAis);
+    if(WinOrAis<1 || WinOrAis>2){
+    	printf("Invalid input\n");
+    	return;
+	}
+    
+	printf("\nEnter the seat number which you want to cancel in the coloumn\n_\n0\n1\n2\n3\n4\n_\n");
+    scanf("%d", &seatNumber);
+    if(seatNumber<0 || seatNumber>4){
+    	printf("Invalid input\n");
+    	return;
+	}
+    
+    // Reserve the seat in the selected class and seat
+    if(classOption==1){ //first class
+    	if(side==1){                                   //left side
+    		if(WinOrAis==1){ //window seat
+    			FirstClassWindow1[seatNumber] = 0;
+			}
+			else if(WinOrAis==2){ //aisle seat
+			FirstClass1[seatNumber] = 0;
+			}
+		}
+		else if(side==2){                              //right side
+    		if(WinOrAis==1){ //window seat
+    			FirstClassWindow2[seatNumber] = 0;
+			}
+			else if(WinOrAis==2){ //aisle seat
+				FirstClass2[seatNumber] = 0;
+			}
+		}
+	}
+	
+	if(classOption==2){ //business class
+    	if(side==1){ //left side
+    		if(WinOrAis==1){ //window seat
+    			BusinessClassWindow1[seatNumber] = 0;
+			}
+			else if(WinOrAis==2){ //aisle seat
+				BusinessClass1[seatNumber] = 0;
+			}
+		}
+		else if(side==2){ //right side
+    		if(WinOrAis==1){ //window seat
+    			BusinessClassWindow2[seatNumber] = 0;
+			}
+			else if(WinOrAis==2){ //aisle seat
+				BusinessClass2[seatNumber] = 0;
+			}
+		}
+	}
+	if(classOption==3){ //economy class
+    	if(side==1){ //left side
+    		if(WinOrAis==1){ //window seat
+    			EconomicClassWindow1[seatNumber] = 0;
+			}
+			else if(WinOrAis==2){ //aisle seat
+				EconomicClass1[seatNumber] = 0;
+			}
+		}
+		else if(side==2){ //right side
+    		if(WinOrAis==1){ //window seat
+    			EconomicClassWindow2[seatNumber] = 0;
+			}
+			else if(WinOrAis==2){ //aisle seat
+				EconomicClass2[seatNumber] = 0;
+			}
+		}
+	}
+	system("cls");
+	printf("\n*************************");
+	printf("\nyour seat has been cancelled\nYou can view it in the visual representation right now\n");
+	printf("*************************\n");
+}
+
+
+void functioncall(){
+    printf("welcome to our online airplane ticket reservation system\nThis plane is a 32 day round trip from islamabad to saudi arabia\n");
+    printf("1. Check prices\n2. View number of seats\n3. Reserve a seat\n4. See a visual of the available seats in the cabin\n5. Cancel Reservation\n6. Exit\n");
+    scanf("%d", &a);
+    if(a==1){
+        system("cls");
+        prices();
+        returntomain();
+    }
+    else if(a==2){
+        system("cls");
+        printf("Choose which class: \nPress 5 for first class\nPress 6 for business\nPress 7 for economy\n");
+        scanf("%d", &option2);
+        availability();
+        returntomain();
+    }
+    else if(a==3){
+        system("cls");
+        reserveSeat();
+        returntomain();
+    }
+    else if(a==4){
+        system("cls");
+        visual();
+        returntomain();
+    }
+    else if (a==5){
+        system("cls");
+        cancelReservation();
+        returntomain();
+    }
+    else if(a==6){
+        printf("you chose to exit the program\n");
+        loop++;
+    }
+    else {
+        printf("\ninvalid input\nExiting program\n\n");
+        loop++;
+    }
+}
+
+int main ()
+{
+    printf("\n*******************\n");
+    printf("Enter your name: ");
+    scanf("%s", name);
+    printf("Good day %s \n\n", name);
+    while(loop<1){
+        functioncall();
+    }
+    return 0;
+}
